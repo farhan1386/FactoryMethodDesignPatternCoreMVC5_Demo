@@ -1,0 +1,49 @@
+﻿@model IEnumerable<FactoryMethodPatternCoreMvc_Demo.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee";
+}
+
+<h3 class="text-uppercase text-center">List of Employees</h3>
+
+<p>
+    <a asp-action="New" class="btn btn-sm btn-primary rounded-0"><i class="fas fa-plus-circle"></i> Add New</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.EmployeeNumber)</th>
+            <th>@Html.DisplayNameFor(m => m.Name)</th>
+            <th>@Html.DisplayNameFor(m => m.Position)</th>
+            <th>@Html.DisplayNameFor(m => m.Office)</th>
+            <th>@Html.DisplayNameFor(m => m.HourlyPay)</th>
+            <th>@Html.DisplayNameFor(m => m.Bonus)</th>
+            <th>@Html.DisplayNameFor(m => m.HouseAllowance)</th>
+            <th>@Html.DisplayNameFor(m => m.MedicalAllowance)</th>
+            <th>@Html.DisplayNameFor(m => m.Department)</th>
+            <th>@Html.DisplayNameFor(m => m.EmployeeType)</th>
+            <th>Action(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td><a asp-action="Details" asp-route-id="@employee.Id">@employee.EmployeeNumber</a></td>
+                <td>@employee.Name</td>
+                <td>@employee.Position</td>
+                <td>@employee.Office</td>
+                <td>$ @employee.HourlyPay</td>
+                <td>$ @employee.Bonus</td>
+                <td>$ @employee.HouseAllowance</td>
+                <td>$ @employee.MedicalAllowance</td>
+                <td>@employee.Department.DepartmentName</td>
+                <td>@employee.EmployeeType.EmployeeTypeName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-sm btn-info rounded-0"><i class="fas fa-pencil-alt"></i></a>
+                    <a asp-action="Delete" asp-route-id="@employee.Id" class="btn btn-sm btn-danger rounded-0"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FactoryMethodPatternCoreMvc_Demo.Models.Department>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3 class="text-uppercase text-center">List of departments</h3>
+
+<p>
+    <a asp-action="New" class="btn btn-sm btn-primary rounded-0"><i class="fas fa-plus-circle"></i> Add New</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+            <th>Action(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@department.Id">@department.DepartmentName</a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@department.Id" class="btn btn-sm btn-primary rounded-0"><i class="fas fa-pencil-alt"></i></a>
+                    <a asp-action="Delete" asp-route-id="@department.Id" class="btn btn-sm btn-danger rounded-0"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
